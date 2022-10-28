@@ -1,4 +1,3 @@
-import '../flutter_flow/flutter_flow_ad_banner.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -226,13 +225,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ),
                     ),
                   ],
-                ),
-                Align(
-                  alignment: AlignmentDirectional(0, 1),
-                  child: FlutterFlowAdBanner(
-                    showsTestAd: true,
-                    androidAdUnitID: 'ca-app-pub-2416778486939026/9254919438',
-                  ),
                 ),
               ],
             ),
