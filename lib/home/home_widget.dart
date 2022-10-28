@@ -191,8 +191,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Align(
                   alignment: AlignmentDirectional(0, 1),
                   child: FlutterFlowAdBanner(
-                    width: MediaQuery.of(context).size.width,
-                    height: 60,
                     showsTestAd: true,
                     androidAdUnitID: 'ca-app-pub-2416778486939026/9254919438',
                   ),
