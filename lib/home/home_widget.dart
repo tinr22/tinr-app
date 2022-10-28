@@ -17,6 +17,13 @@ class _HomeWidgetState extends State<HomeWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
@@ -165,7 +172,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
-                                    'https://picsum.photos/seed/255/600',
+                                    rowScreenshootRecord.ss!,
                                     width: 150,
                                     fit: BoxFit.fitHeight,
                                   ),
