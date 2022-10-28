@@ -62,8 +62,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       2, 2, 2, 2),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      'https://github.com/tinr22/appasset/raw/main/ss/logo.png',
+                                    child: Image.asset(
+                                      'assets/images/logo.png',
                                       width: 60,
                                       height: 60,
                                       fit: BoxFit.contain,

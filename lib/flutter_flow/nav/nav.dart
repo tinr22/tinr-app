@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
-import '../../backend/backend.dart';
 
 import '../../index.dart';
 import '../../main.dart';
@@ -103,7 +102,6 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
-    String? collectionName,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -117,7 +115,11 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(param, type, isList, collectionName);
+    return deserializeParam<T>(
+      param,
+      type,
+      isList,
+    );
   }
 }
 
