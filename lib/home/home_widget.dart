@@ -27,43 +27,44 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<MiscRecord>>(
-      stream: queryMiscRecord(
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
-              ),
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
-          );
-        }
-        List<MiscRecord> homeMiscRecordList = snapshot.data!;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data!.isEmpty) {
-          return Container();
-        }
-        final homeMiscRecord =
-            homeMiscRecordList.isNotEmpty ? homeMiscRecordList.first : null;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          body: SafeArea(
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
-              child: Container(
-                width: double.infinity,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                ),
-                child: SingleChildScrollView(
+            child: StreamBuilder<List<MiscRecord>>(
+              stream: queryMiscRecord(
+                singleRecord: true,
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                      ),
+                    ),
+                  );
+                }
+                List<MiscRecord> columnMiscRecordList = snapshot.data!;
+                // Return an empty Container when the document does not exist.
+                if (snapshot.data!.isEmpty) {
+                  return Container();
+                }
+                final columnMiscRecord = columnMiscRecordList.isNotEmpty
+                    ? columnMiscRecordList.first
+                    : null;
+                return SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,47 +72,51 @@ class _HomeWidgetState extends State<HomeWidget> {
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if (homeMiscRecord!.warningInstall == true)
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SelectionArea(
-                                      child: Text(
-                                    'Uninstall Versi Sebelumnya !',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFFFF0000),
-                                        ),
-                                  )),
-                                ],
-                              ),
-                            ),
-                          if (homeMiscRecord!.warningInstall == true)
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SelectionArea(
-                                      child: Text(
-                                    'Sebelum Menginstall Versi Ini.',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
-                                        .override(
-                                          fontFamily: 'Poppins',
-                                          color: Color(0xFFFF0000),
-                                        ),
-                                  )),
-                                ],
-                              ),
+                          if (columnMiscRecord!.warningInstall ?? true)
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SelectionArea(
+                                          child: Text(
+                                        'Uninstall Versi Sebelumnya !',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFFFF0000),
+                                            ),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 1, 0, 0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SelectionArea(
+                                          child: Text(
+                                        'Sebelum Menginstall Versi Ini.',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFFFF0000),
+                                            ),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           Padding(
                             padding:
@@ -344,7 +349,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     await launchURL(
-                                        homeMiscRecord!.downloadUrl!);
+                                        columnMiscRecord!.downloadUrl!);
                                   },
                                   text: 'Unduh',
                                   options: FFButtonOptions(
@@ -599,12 +604,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ),
                     ],
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
