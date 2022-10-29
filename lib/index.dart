@@ -1,2 +1,2 @@
 // Export pages
-export 'home/home_widget.dart' show HomeWidget;
+export 'home2/home2_widget.dart' show Home2Widget;

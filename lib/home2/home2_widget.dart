@@ -8,14 +8,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:page_transition/page_transition.dart';
 
-class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+class Home2Widget extends StatefulWidget {
+  const Home2Widget({Key? key}) : super(key: key);
 
   @override
-  _HomeWidgetState createState() => _HomeWidgetState();
+  _Home2WidgetState createState() => _Home2WidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> {
+class _Home2WidgetState extends State<Home2Widget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -349,7 +349,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     await launchURL(
-                                        columnMiscRecord!.downloadUrl!);
+                                        'https://app.arcanasoft.workers.dev/0:/TI%20NR%2022-release.apk');
                                   },
                                   text: 'Unduh',
                                   options: FFButtonOptions(
